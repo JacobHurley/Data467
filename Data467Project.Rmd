@@ -1,0 +1,140 @@
+---
+title: "Data467Project"
+author: "JacobHurley"
+date: "9/10/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r data import}
+data <- read.csv("heart.csv")
+data
+numericalData = subset(data, select = -c(Sex, ChestPainType, RestingECG, ExerciseAngina,ST_Slope))
+numericalData
+
+```
+
+```{r helperFunctions}
+numberOfOccurences = function(vector, SearchTerm){
+  total = 0
+  for (i in vector){
+    if (i == SearchTerm){
+      total = total + 1
+    }
+  }
+  return (total)
+}
+
+numberOfLessThan = function(vector, value){
+  total = 0
+  for(i in vector){
+    if (i < value){
+      total = total+1
+    }
+  }
+  return (total)
+}
+```
+
+
+```{r anaylsis}
+#summary(data)
+# numerical data
+print("summary of Age: ")
+summary(data$Age)
+print("summary of RestingBP: ")
+summary(data$RestingBP)
+print("summary of Cholesterol: ")
+summary(data$Cholesterol)
+print("summary of FastingBS: ")
+summary(data$FastingBS)
+print("summary of MaxHR: ")
+summary(data$MaxHR)
+print("summary of OLDPeak: ")
+summary(data$Oldpeak)
+print("summary of HeartDisease: ")
+summary(data$HeartDisease)
+
+# catagorical data
+unique(data$Sex)
+unique(data$ChestPainType)
+unique(data$RestingECG)
+unique(data$ExerciseAngina)
+unique(data$ST_Slope)
+
+print("Number of M in data$Sex: ")
+print(numberOfOccurences(data$Sex, "M"))
+print("Number of F in data$Sex: ")
+print(numberOfOccurences(data$Sex, "F"))
+
+print("Number of ATA in data$ChestPainType: ")
+print(numberOfOccurences(data$ChestPainType, "ATA"))
+print("Number of NAP in data$ChestPainType: ")
+print(numberOfOccurences(data$ChestPainType, "NAP"))
+print("Number of ASY in data$ChestPainType: ")
+print(numberOfOccurences(data$ChestPainType, "ASY"))
+print("Number of TA in data$ChestPainType: ")
+print(numberOfOccurences(data$ChestPainType, "TA"))
+
+print("Number of Normal in data$RestingECG: ")
+print(numberOfOccurences(data$RestingECG, "Normal"))
+print("Number of ST in data$RestingECG: ")
+print(numberOfOccurences(data$RestingECG, "ST"))
+print("Number of LVH in data$RestingECG: ")
+print(numberOfOccurences(data$RestingECG, "LVH"))
+
+print("Number of N in data$ExerciseAngina: ")
+print(numberOfOccurences(data$ExerciseAngina, "N"))
+print("Number of Y in data$ExerciseAngina: ")
+print(numberOfOccurences(data$ExerciseAngina, "Y"))
+
+print("Number of Up in data$ST_Slope: ")
+print(numberOfOccurences(data$ST_Slope, "Up"))
+print("Number of Flat in data$ST_Slope: ")
+print(numberOfOccurences(data$ST_Slope, "Flat"))
+print("Number of Down in data$ST_Slope: ")
+print(numberOfOccurences(data$ST_Slope, "Down"))
+```
+
+```{r correlation}
+cor(numericalData)
+
+```
+
+```{r histograms}
+# numerical
+hist(data$Age)
+hist(data$RestingBP)
+hist(data$Cholesterol)
+hist(data$FastingBS)
+hist(data$MaxHR)
+hist(data$Oldpeak)
+hist(data$HeartDisease)
+
+# catagorical
+barplot(table(data$Sex), main = "SEX")
+barplot(table(data$ChestPainType), main = "ChestPainType")
+barplot(table(data$RestingECG), main = "RestingECG")
+barplot(table(data$ExerciseAngina), main = "ExerciseAngina")
+barplot(table(data$ST_Slope), main = "ST_SLOPE")
+
+
+```
+
+
+```{r plots}
+plot(data$Age)
+plot(data$RestingBP)
+plot(data$Cholesterol)
+plot(data$FastingBS)
+plot(data$MaxHR)
+plot(data$Oldpeak)
+plot(data$HeartDisease)
+numberOfLessThan(data$Cholesterol, 1)
+numberOfLessThan(data$Oldpeak, 0)
+```
