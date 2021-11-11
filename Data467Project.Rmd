@@ -167,6 +167,11 @@ qqline(data$HeartDisease,col = "red")
 fullModel = lm(formula = HeartDisease ~ Age + RestingBP + Cholesterol + FastingBS + MaxHR + Oldpeak + Sex + ChestPainType
                + RestingECG + ExerciseAngina + ST_Slope, data = data)
 print(summary(fullModel))
-#temp
+
+reducedModel = lm(formula = HeartDisease ~ Sex + ChestPainType + Cholesterol + FastingBS + RestingECG + ExerciseAngina
+                  + Oldpeak + ST_Slope, data = data)
+print(summary(reducedModel))
+
+anova(reducedModel, fullModel)
 
 ```
