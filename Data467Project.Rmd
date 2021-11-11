@@ -138,3 +138,35 @@ plot(data$HeartDisease)
 numberOfLessThan(data$Cholesterol, 1)
 numberOfLessThan(data$Oldpeak, 0)
 ```
+
+```{r qqplots}
+qqnorm(data$Age, main = "AGE")
+qqline(data$Age,col = "red")
+
+qqnorm(data$RestingBP, main = "RestingBP")
+qqline(data$RestingBP,col = "red")
+
+qqnorm(data$Cholesterol, main = "Cholesterol")
+qqline(data$Cholesterol,col = "red")
+
+qqnorm(data$FastingBS, main = "FastingBS") # seems categorical
+qqline(data$FastingBS,col = "red")
+
+qqnorm(data$MaxHR, main = "MaxHR")
+qqline(data$MaxHR,col = "red")
+
+qqnorm(data$Oldpeak, main = "Oldpeak")
+qqline(data$Oldpeak,col = "red")
+
+qqnorm(data$HeartDisease, main = "HeartDisease") #categorical(either have or dont)
+qqline(data$HeartDisease,col = "red")
+
+```
+
+```{r models}
+fullModel = lm(formula = HeartDisease ~ Age + RestingBP + Cholesterol + FastingBS + MaxHR + Oldpeak + Sex + ChestPainType
+               + RestingECG + ExerciseAngina + ST_Slope, data = data)
+print(summary(fullModel))
+#temp
+
+```
