@@ -146,8 +146,9 @@ qqline(data$Age,col = "red")
 qqnorm(data$RestingBP, main = "RestingBP")
 qqline(data$RestingBP,col = "red")
 
-qqnorm(data$Cholesterol, main = "Cholesterol")
-qqline(data$Cholesterol,col = "red")
+
+qqnorm(subset(data, Cholesterol>0)$Cholesterol, main = "Cholesterol")
+qqline(subset(data, Cholesterol>0)$Cholesterol,col = "red")
 
 qqnorm(data$FastingBS, main = "FastingBS") # seems categorical
 qqline(data$FastingBS,col = "red")
