@@ -169,6 +169,8 @@ fullModel = lm(formula = HeartDisease ~ Age + RestingBP + Cholesterol + FastingB
                + RestingECG + ExerciseAngina + ST_Slope, data = data)
 print(summary(fullModel))
 
+resid(fullModel)
+
 reducedModel = lm(formula = HeartDisease ~ Sex + ChestPainType + Cholesterol + FastingBS + RestingECG + ExerciseAngina
                   + Oldpeak + ST_Slope, data = data)
 print(summary(reducedModel))
