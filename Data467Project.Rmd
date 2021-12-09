@@ -176,3 +176,15 @@ print(summary(reducedModel))
 anova(reducedModel, fullModel)
 
 ```
+```{r logistic}
+fullModel = glm(formula = HeartDisease ~ Age + RestingBP + Cholesterol + FastingBS + MaxHR + Oldpeak + Sex + ChestPainType
+               + RestingECG + ExerciseAngina + ST_Slope, family = binomial(link = "logit"),data = data)
+print(summary(fullModel))
+
+reducedModel = glm(formula = HeartDisease ~ Sex + ChestPainType + Cholesterol + FastingBS + RestingECG + ExerciseAngina
+                  + Oldpeak + ST_Slope,family = binomial(link = "logit"), data = data)
+print(summary(reducedModel))
+
+anova(reducedModel, fullModel)
+
+```
